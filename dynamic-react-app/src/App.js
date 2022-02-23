@@ -11,9 +11,12 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
+        <Routes>
+
+        </Routes>
 
 
-      <Footer />
+        <Footer />
       </BrowserRouter>
     </div>
   );

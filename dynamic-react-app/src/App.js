@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import {
   BrowserRouter,
@@ -7,10 +6,14 @@ import {
 } from "react-router-dom"
 import Footer from './components/Footer';
 import Product from './Pages/Product';
+import Header from './components/Header';
+
 
 function App() {
   return (
     <div className="App">
+
+      <Header />
       <BrowserRouter>
         <Routes>
           <Route path="/:id" element={ <Product /> } ></Route>

@@ -1,0 +1,20 @@
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;   
+}
+
+.navbaritem {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 30px;
+    color: inherit;
+    text-transform: uppercase;
+    text-decoration: none;
+    outline: none;
+
+}
+
+
+
+

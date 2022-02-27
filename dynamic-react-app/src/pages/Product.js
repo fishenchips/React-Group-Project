@@ -8,7 +8,7 @@ function Product() {
 
     const fetchData = async() => {
         try {
-            const response = await fetch("https://codexplained.se/electronics.php?id=234967") //hardcoded for now
+            const response = await fetch("https://codexplained.se/sportstuff.php?id=234967") //hardcoded for now
             const data = await response.json()
 
             console.log("does this work", data)
@@ -23,13 +23,15 @@ function Product() {
     }, []) //empty array meaning useEffect() only runs at componentDidMount
 
   return (
-    <article>
-        <h2>{product.title}</h2>
-        <div className={styles.picPriceDiv}>
-            <h4>Bild</h4>
-            <div>
+    <article className={styles.productPage}>
+        <h2 className={styles.productTitle}>{product.title}</h2>
+        <div className={styles.productWrapper}>
+            <div className={styles.imgDiv}>
+                <img className={styles.img} src={product.url}/>
+            </div>
+            <div className={styles.productAside}>
                 <h3>{product.price} SEK</h3>
-                <button>add to cart</button>
+                <button className={styles.cartBtn}>add to cart</button>
                 <p>{product.storage} items in stock. </p>
             </div>
         </div>
@@ -37,9 +39,6 @@ function Product() {
             <p>{product.description}</p>
             <p>Article number {product.id}</p>
         </div>
-
-
-{/*         <img src={product.url}/> way to big atm*/}
     </article>
   )
 }

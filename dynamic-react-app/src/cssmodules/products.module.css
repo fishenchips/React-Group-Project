@@ -1,5 +1,25 @@
-/* .container {
+.container {
+    margin: 20px auto;
+    width: 80%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    border-radius: 5px;
     background-color: lightgrey;
-    height: 300px;
+    padding: 50px;
+    margin: 100px;
 
-} */
+}
+
+.card {
+    display: inline-block;
+    border: solid 1px black;
+    width: 400px;
+    height: 500px;
+    border-radius: 5px;
+    overflow: hidden;
+    padding: 10px;
+    margin: 40px 20px;
+    background-color: whitesmoke;
+
+}

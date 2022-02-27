@@ -24,11 +24,12 @@ function Products() {
         <div>
          {
              products.map((product)=>(
-                 <><section key={product.id}>
-                        <img src={product.url} width='50%' height='50%'></img>
+                 <><section className={styles.card} key={product.id}>
+                        <img src={product.url} alt={product.description} width='30%' height='30%'></img>
                         <h1>{product.title}</h1>
                         <h3>{product.price}SEK</h3>                        
-                        <p>{product.description}</p>              
+                        <p>{product.description}</p>
+                        <button className='add-to-cart-button'>Add to Cart</button>              
                     </section></>
                 
 

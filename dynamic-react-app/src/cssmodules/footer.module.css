@@ -8,4 +8,6 @@
     display: flex;
     justify-content: space-around;
     padding-top: 1rem;
+    /* added fixed position so that it stays at the bottom */
+    position: fixed; 
 }

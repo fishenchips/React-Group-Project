@@ -29,7 +29,7 @@ function Products() {
                         <h1>{product.title}</h1>
                         <h3>{product.price}SEK</h3>                        
                         <p>{product.description}</p>
-                        <button className='add-to-cart-button'>Add to Cart</button>              
+                        <button className={styles.addtocartbutton}>Add to Cart</button>              
                     </section></>
                 
 

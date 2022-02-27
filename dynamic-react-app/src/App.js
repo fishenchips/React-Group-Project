@@ -7,6 +7,7 @@ import {
 import Footer from './components/Footer';
 import Product from './Pages/Product';
 import Header from './components/Header';
+import Products from './Pages/Products';
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
     <div className="App">
 
       <Header />
+      <Products />
       <BrowserRouter>
         <Routes>
           <Route path="/:id" element={ <Product /> } ></Route>
@@ -21,7 +23,7 @@ function App() {
         </Routes>
 
 
-        <Footer />
+        {/* <Footer /> */}
       </BrowserRouter>
     </div>
   );

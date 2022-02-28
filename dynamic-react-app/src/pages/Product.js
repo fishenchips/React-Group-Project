@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from "react-router-dom"
 import styles from "../cssmodules/product.module.css"
 import {motion} from "framer-motion";
+import {FaShoppingCart} from "react-icons/fa";
+import {headerSlide, imgSlide, asideSlide, infoSlide} from "../animations"
 
 function Product() {
     const params = useParams();
@@ -27,48 +29,41 @@ function Product() {
     <article className={styles.productPage}>
         <motion.h2  
             className={styles.productTitle}
-            initial={{
-                y: "-10vh",
-                scale: 0.1
-            }}
-            animate={{
-                y: 0,
-                scale: 1.7
-            }}
-            transition= {{
-                duration: 2
-            }}
+            initial="start"
+            animate="end"
+            variants={headerSlide}
         >
             {product.title}
         </motion.h2>
         <div className={styles.productWrapper}>
             <motion.div 
                 className={styles.imgDiv}
-                initial={{
-                    x: "-35vw",
-                    scale:0.1
-                }}
-                animate={{
-                    x: 0,
-                    scale: 1
-                }}
-                transition= {{
-                    duration: 2
-                }}
-
+                initial="start"
+                animate="end"
+                variants={imgSlide}
             >
                 <img className={styles.img} src={product.url}/>
             </motion.div>
-            <div className={styles.productAside}>
+            <motion.div 
+                className={styles.productAside}
+                initial="start"
+                animate="end"
+                variants={asideSlide}
+            >
                 <h3>{product.price} SEK</h3>
-                <button className={styles.cartBtn}>add to cart</button>
+                <button className={styles.cartBtn}> <FaShoppingCart /> </button>
                 <p>{product.storage} items in stock. </p>
-            </div>
+            </motion.div>
         </div>
-        <div>
+        <motion.div
+            initial="start"
+            animate="end"
+            variants={infoSlide}
+
+        >
             <p>{product.description}</p>
             <p>Article number {product.id}</p>
-        </div>
+        </motion.div>
     </article>
   )
 }

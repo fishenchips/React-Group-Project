@@ -13,6 +13,7 @@
     height: 300px;
     display: flex;
     justify-content: center;
+    mix-blend-mode: multiply;
 }
 
 .img {

@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom"
 import styles from "../cssmodules/product.module.css"
 import {motion} from "framer-motion";
 import {FaShoppingCart} from "react-icons/fa";
-import {headerSlide, imgSlide, asideSlide, infoSlide} from "../animations"
+import {headerSlide, imgSlide, asideSlide, infoSlide, pChild} from "../animations"
 
 function Product() {
     const params = useParams();
@@ -59,10 +59,29 @@ function Product() {
             initial="start"
             animate="end"
             variants={infoSlide}
-
         >
-            <p>{product.description}</p>
-            <p>Article number {product.id}</p>
+            <motion.p
+                initial={{
+                    y: "30vw",
+                    scale: 0.1,
+                }}
+                animate={{
+                    y: 0,
+                    scale: 1,
+                }}
+                transition={{
+                    duration: 2
+                }}
+            >
+                    {product.description}
+            </motion.p>
+            <motion.p
+                initial="start"
+                animate="end"
+                variants={pChild}
+            >
+                Article number {product.id}
+            </motion.p>
         </motion.div>
     </article>
   )

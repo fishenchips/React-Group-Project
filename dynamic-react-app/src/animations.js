@@ -36,18 +36,22 @@ export const asideSlide = {
 
 export const infoSlide = {
     start: {
-        y: "30vw",
-        scale: 0.1,
         when: "beforeChildren",
-        staggerChildren: 0.3 
+        delayChildren: 100
     },
     end: {
-        y: 0,
-        scale: 1,
-        transition: {
-            duration: 2,
-            when: "beforeChildren",
-            staggerChildren: 0.3 
-        } // need help with this one
     },
+}
+
+export const pChild = {
+    start: {
+        opacity: 0
+    },
+    end: {
+        opacity: 1,
+        transition: {
+            duration: 0.5,
+            delay: 2
+        }
+    }
 }

@@ -26,41 +26,50 @@ function Checkout() {
     console.log("default todos", item)
   return (
     <section>
-        <table>
+        <Table>
             <thead>
-                <tr>
-                    <th>Image</th>
-                    <th>Product</th>
-                    <th>Price</th>
-                </tr>
+                <h2>Checkout</h2>
             </thead>
             <tbody>
                 {
                     item.map( (product) => (
-                        <tr key={product.id}>
+                        <TableRow key={product.id}>
                             <td> 
                                 <Img 
                                     src={product.url} 
                                     alt={product.title}
-                                    
-
                                 />
                             </td>
                             <td>{product.title}</td>
-                            <td>{product.price}</td>
-                        </tr>
+                            <td>{product.price} SEK</td>
+                            <td>add / remove</td>
+                            <td>amount</td>
+                            <td>Sum:</td>
+                        </TableRow>
                     ))
                 }
             </tbody>
-        </table>
+        </Table>
     </section>
   )
 }
 
+const Table = styled.table`
+    border: 1px solid tomato;
+    display: flex;
+    flex-direction: column;
+`
+
+const TableRow = styled.tr`
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    border-bottom: 1px solid gray;
+`
+
 const Img = styled.img`
     height: 40px;
 `
-  
 
 
 export default Checkout

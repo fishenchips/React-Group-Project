@@ -36,10 +36,10 @@ export const asideSlide = {
 
 export const infoSlide = {
     start: {
-        when: "beforeChildren",
-        delayChildren: 100
     },
     end: {
+        when: "beforeChildren",
+        staggerChildren: 3
     },
 }
 

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {motion} from "framer-motion";
 
 export const Table = styled.table`
     border: 1px solid tomato;
@@ -21,4 +22,19 @@ export const TableRow = styled.tr`
 
 export const Img = styled.img`
     height: 40px;
+`
+
+export const Form = styled.form`
+    display: flex;
+    flex-direction: column;
+    border: 1px solid blue;
+    padding: 1rem;
+    align-items: center;   
+`
+
+export const InputForm = styled.input`
+    padding: 0.5rem;
+    margin-top: 1rem;
+    border-radius: 0.5rem;
+    border-color: olive;
 `

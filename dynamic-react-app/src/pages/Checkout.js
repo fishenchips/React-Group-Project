@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import styled from "styled-components";
+import CheckoutForm from '../components/CheckoutForm';
+import {Table, TableHeader, TableRow, Img} from "../styledComponents"
 
 const defaultCart = [{
     id: 234967,
@@ -20,65 +22,48 @@ const defaultCart = [{
 ]
 
 function Checkout() {
-    const [item, setItem] = useState([])
+    const [item, setItem] = useState(defaultCart)
 
 
     console.log("default todos", item)
   return (
-    !item
-        ? <p>empty</p>
-        :
-    <section>
-        <Table>
-            <thead>
-                <tr>
-                    <td>
-                        <h2>Checkout</h2>
-                    </td>
-                </tr>
-            </thead>
-            <tbody>
-                {
-                    item.map( (product) => (
-                        <TableRow key={product.id}>
-                            <td> 
-                                <Img 
-                                    src={product.url} 
-                                    alt={product.title}
-                                />
-                            </td>
-                            <td>{product.title}</td>
-                            <td>{product.price} SEK</td>
-                            <td>add / remove</td>
-                            <td>amount</td>
-                            <td>Sum:</td>
-                        </TableRow>
-                    ))
-                }
-            </tbody>
-        </Table>
-    </section>
+    <div>
+        <section>
+            <Table>
+                <thead>
+                    <tr>
+                        <td>
+                            <TableHeader>Checkout</TableHeader>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        item.map( (product) => (
+                            <TableRow key={product.id}>
+                                <td> 
+                                    <Img 
+                                        src={product.url} 
+                                        alt={product.title}
+                                    />
+                                </td>
+                                <td>{product.title}</td>
+                                <td>{product.price} SEK</td>
+                                <td>add / remove</td>
+                                <td>amount</td>
+                                <td>Sum: </td>
+                                <td>
+                                    <button>Delete</button>
+                                </td>
+                            </TableRow>
+                        ))
+                    }
+                </tbody>
+            </Table>
+        </section>
+        <CheckoutForm />
+    </div>
   )
 }
-
-const Table = styled.table`
-    border: 1px solid tomato;
-    display: flex;
-    flex-direction: column;
-`
-
-const TableRow = styled.tr`
-    display: flex;
-    justify-content: space-evenly;
-    width: 100%;
-    border-bottom: 1px solid gray;
-    margin-top: 1vh;
-    padding: 1rem;
-`
-
-const Img = styled.img`
-    height: 40px;
-`
-
 
 export default Checkout

@@ -20,15 +20,22 @@ const defaultCart = [{
 ]
 
 function Checkout() {
-    const [item, setItem] = useState(defaultCart)
+    const [item, setItem] = useState([])
 
 
     console.log("default todos", item)
   return (
+    !item
+        ? <p>empty</p>
+        :
     <section>
         <Table>
             <thead>
-                <h2>Checkout</h2>
+                <tr>
+                    <td>
+                        <h2>Checkout</h2>
+                    </td>
+                </tr>
             </thead>
             <tbody>
                 {
@@ -65,6 +72,8 @@ const TableRow = styled.tr`
     justify-content: space-evenly;
     width: 100%;
     border-bottom: 1px solid gray;
+    margin-top: 1vh;
+    padding: 1rem;
 `
 
 const Img = styled.img`

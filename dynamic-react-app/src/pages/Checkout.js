@@ -21,11 +21,18 @@ const defaultCart = [{
   }
 ]
 
-function Checkout() {
-    const [item, setItem] = useState(defaultCart)
+function Checkout(  { /* cartItems  */ updateCartItem, item, deleteCartItem } ) {
+    const [cartItems, setCartItems] = useState(defaultCart)
+
+    const handleDeleteBtn = (e) => {
+        e.preventDefault();
 
 
-    console.log("default todos", item)
+        //doesnt work because right now im using defaultCart
+        deleteCartItem(cartItems.id)
+    }
+
+    console.log("default todos", cartItems)
   return (
     <div>
         <section>
@@ -39,7 +46,7 @@ function Checkout() {
                 </thead>
                 <tbody>
                     {
-                        item.map( (product) => (
+                        cartItems.map( (product) => (
                             <TableRow key={product.id}>
                                 <td> 
                                     <Img 
@@ -53,13 +60,14 @@ function Checkout() {
                                 <td>amount</td>
                                 <td>Sum: </td>
                                 <td>
-                                    <button>Delete</button>
+                                    <button onClick={handleDeleteBtn}>Delete</button>
                                 </td>
                             </TableRow>
                         ))
                     }
                 </tbody>
             </Table>
+            <h3>Total cost:</h3>
         </section>
         <CheckoutForm />
     </div>

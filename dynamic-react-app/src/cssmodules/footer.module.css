@@ -1,14 +1,10 @@
 .footer {
     background-color: black;
     color: whitesmoke;
-    position: absolute;
-    bottom: 0;
     width: 100%;
-    /* footer colides with body */
-    height: 5rem; 
+    height: 10rem; 
     display: flex;
     justify-content: space-around;
     padding-top: 1rem;
-    /* added fixed position so that it stays at the bottom */
-    position: fixed; 
+  
 }

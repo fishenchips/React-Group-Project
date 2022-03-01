@@ -19,7 +19,7 @@ function Products() {
         fetchData();
     }, [])
   return (
-    <div className={styles.container}>
+    <div className={styles.container} >
         <h1>Products</h1>
         <div>
          {

@@ -1,16 +1,23 @@
 import React from 'react'
 import styles from "../cssmodules/navbar.module.css";
 import {FaShoppingCart} from "react-icons/fa";
+import {Link} from 'react-router-dom'
+ 
 
 
 function NavBar() {
   return (
-    <section className={styles.navbar}>    
-        <a href='/' className={styles.navbaritem}>Home</a>
-        <a href='/Products' className={styles.navbaritem}>Products</a>
-        <a href='/Shopping Cart' className={styles.navbaritem}><FaShoppingCart /></a>
-       
-    </section>
+    <nav>
+
+      <ul className={styles.navbar}>    
+         
+         <Link to="/" className={styles.navbaritem}>Home</Link>
+         <Link to="/products" className={styles.navbaritem} > Products </Link>
+         <Link to="/cart" className={styles.navbaritem}> <FaShoppingCart /> </Link>
+         
+        
+      </ul>
+    </nav>
   )
 }
 

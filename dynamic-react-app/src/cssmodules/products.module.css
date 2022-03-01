@@ -5,7 +5,7 @@
     justify-content: space-evenly;
     flex-wrap: wrap;
     border-radius: 5px;
-    background-color: lightblue;
+    background-color: whitesmoke;
     padding: 50px;
     margin: 100px;
 
@@ -20,7 +20,8 @@
     overflow: hidden;
     padding: 10px;
     margin: 40px 20px;
-    background-color: lightgrey ;
+    background-color: whitesmoke ;
+
 
 }
 
@@ -43,4 +44,8 @@
 
 .addtocartbutton:hover {
     background-color: red;
+}
+
+img {
+    mix-blend-mode: multiply;
 }

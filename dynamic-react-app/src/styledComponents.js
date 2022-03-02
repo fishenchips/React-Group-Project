@@ -32,7 +32,7 @@ export const Form = styled.form`
     align-items: center;   
 `
 
-export const InputForm = styled.input`
+export const InputForm = styled(motion.input)`
     padding: 0.5rem;
     margin-top: 1rem;
     border-radius: 0.5rem;

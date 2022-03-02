@@ -55,3 +55,12 @@ export const pChild = {
         }
     }
 }
+
+export const inputHover = {
+    hover: {
+        scale: 1.2,
+        transition: {
+            type: "spring", 
+            stiffness: 300}
+    }
+}

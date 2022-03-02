@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from "react-router-dom"
 import styles from "../cssmodules/product.module.css"
 import {motion} from "framer-motion";
-import {FaShoppingCart} from "react-icons/fa";
-import {headerSlide, imgSlide, asideSlide, infoSlide, pChild} from "../animations"
+import {headerSlide, imgSlide, asideSlide, infoSlide, pChild, button} from "../animations"
 
 function Product() {
     const params = useParams();
@@ -51,7 +50,14 @@ function Product() {
                 variants={asideSlide}
             >
                 <h3 className={styles.productPrice}>{product.price} SEK</h3>
-                <button className={styles.cartBtn}> <FaShoppingCart /> </button>
+                <motion.button    
+                    className={styles.cartBtn}
+                    whileHover="hover"
+                    whileTap="press"
+                    variants={button}               
+                >
+                    Add to cart
+                </motion.button>
                 <p>{product.storage} items in stock. </p>
             </motion.div>
         </div>

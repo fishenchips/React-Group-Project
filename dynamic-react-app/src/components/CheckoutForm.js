@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import React from 'react'
-import { inputHover } from '../animations'
-import {Form, InputForm} from "../styledComponents"
+import { inputHover, button } from '../animations'
+import {BuyBtn, Form, InputForm} from "../styledComponents"
 
 function CheckoutForm() {
   return (
@@ -42,7 +42,13 @@ function CheckoutForm() {
             placeholder="Country" name="country" type="text" 
         />
         <br />
-        <button>Confirm purchase</button>
+        <BuyBtn
+            whileHover="hover"
+            whileTap="press"
+            variants={button}
+        >
+            Confirm purchase
+        </BuyBtn>
     </Form>
 
     

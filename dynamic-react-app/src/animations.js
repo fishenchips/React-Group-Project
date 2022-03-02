@@ -64,3 +64,29 @@ export const inputHover = {
             stiffness: 300}
     }
 }
+
+export const button = {
+    hover: {
+        scale: 1.1,
+        boxShadow: "0px 0px 8px rgb(245, 245, 245)",
+        textShadow: "0px 0px 8px rgb(245, 245, 245)",
+    },
+    press: {
+        backgroundColor: "rgb(245, 245, 245)",
+        color: "rgb(107, 143, 36)",
+        textShadow: "0px 0px 8px rgb(107, 143, 36)",
+    }
+}
+
+export const checkout = {
+    start: {
+        opacity: 0
+    },
+    end: {
+        opacity: 1,
+        transition: {
+            duration: 1.5,
+            delay: 0.2
+        }
+    }
+}

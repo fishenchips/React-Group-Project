@@ -39,5 +39,8 @@
     padding: 10px;
     width: 50%;
     align-self: center;
-    background-color: rgb(136, 247, 247);
+    border-radius: 0.8rem;
+    border-color: olivedrab;
+    background-color: rgb(107, 143, 36);
+    color: rgb(245, 245, 245);
 }

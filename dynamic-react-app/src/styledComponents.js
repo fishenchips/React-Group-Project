@@ -38,3 +38,27 @@ export const InputForm = styled(motion.input)`
     border-radius: 0.5rem;
     border-color: olive;
 `
+
+export const DeleteBtn = styled(motion.button)`
+    padding: 0.5rem;
+    border-radius: 0.8rem;
+    border-color: olivedrab;
+    background-color: rgb(107, 143, 36);
+    color: rgb(245, 245, 245);
+`
+
+export const AlterQtyBtn = styled(DeleteBtn)`
+    padding: 0.125rem;
+    border-radius: 0.25rem;
+    width: 1.5rem;
+`
+
+
+export const ClearBtn = styled(DeleteBtn)`
+    padding: 1rem;
+`
+
+export const BuyBtn = styled(DeleteBtn)`
+    padding: 2rem;
+    background-color: green;
+`

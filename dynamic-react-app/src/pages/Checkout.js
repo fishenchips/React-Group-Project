@@ -2,7 +2,9 @@ import React, {useState} from 'react';
 import styled from "styled-components";
 import CheckoutForm from '../components/CheckoutForm';
 import EmptyCheckout from '../components/EmptyCheckout';
-import {Table, TableHeader, TableRow, Img} from "../styledComponents"
+import {motion} from "framer-motion";
+import { button, checkout } from '../animations'
+import {Table, TableHeader, TableRow, Img, DeleteBtn, ClearBtn, AlterQtyBtn} from "../styledComponents"
 
 function Checkout({cartItems, updateCartItem, deleteCartItem, clearCart}) {
 
@@ -11,7 +13,11 @@ function Checkout({cartItems, updateCartItem, deleteCartItem, clearCart}) {
     }
     else {
         return (
-            <div>
+            <motion.div
+                initial="start"
+                animate="end"
+                variants={checkout}
+            >
                 <section>
                     <Table>
                         <thead>
@@ -34,23 +40,38 @@ function Checkout({cartItems, updateCartItem, deleteCartItem, clearCart}) {
                                         <td>{product.title}</td>
                                         <td>{product.price} SEK</td>
                                         <td>
-                                            <button>+</button> 
-                                            <button>-</button>
+                                            <AlterQtyBtn>+</AlterQtyBtn> 
+                                            <AlterQtyBtn>-</AlterQtyBtn>
                                         </td>
                                         <td>amount</td>
                                         <td>Sum: </td>
                                         <td>
-                                            <button onClick={()=> deleteCartItem(product.id)}>Delete</button>
+                                            <DeleteBtn 
+                                                onClick={()=> deleteCartItem(product.id)}
+                                                whileHover="hover"
+                                                whileTap="press"
+                                                variants={button}
+                                            >
+                                                Delete
+                                            </DeleteBtn>
                                         </td>
                                     </TableRow>
                                 ))
                             }
                         </tbody>
                     </Table>
+                    <ClearBtn 
+                        onClick={()=> clearCart()}
+                        whileHover="hover"
+                        whileTap="press"
+                        variants={button}
+                    >
+                        Clear shopping cart
+                    </ClearBtn>
                     <h3>Total cost:</h3>
                 </section>
                 <CheckoutForm />
-            </div>
+            </motion.div>
         )
     }
 }

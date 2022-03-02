@@ -1,11 +1,15 @@
 import React, {useState} from 'react';
 import styled from "styled-components";
 import CheckoutForm from '../components/CheckoutForm';
+import EmptyCheckout from '../components/EmptyCheckout';
 import {Table, TableHeader, TableRow, Img} from "../styledComponents"
 
 function Checkout({cartItems, updateCartItem, deleteCartItem}) {
 
-  return (
+if (!cartItems) {
+    return < EmptyCheckout /> }
+else {
+return (
     <div>
         <section>
             <Table>
@@ -28,7 +32,10 @@ function Checkout({cartItems, updateCartItem, deleteCartItem}) {
                                 </td>
                                 <td>{product.title}</td>
                                 <td>{product.price} SEK</td>
-                                <td>add / remove</td>
+                                <td>
+                                    <button>+</button> 
+                                    <button>-</button>
+                                </td>
                                 <td>amount</td>
                                 <td>Sum: </td>
                                 <td>
@@ -45,5 +52,5 @@ function Checkout({cartItems, updateCartItem, deleteCartItem}) {
     </div>
   )
 }
-
+}
 export default Checkout

@@ -50,7 +50,7 @@ function Product() {
                 animate="end"
                 variants={asideSlide}
             >
-                <h3>{product.price} SEK</h3>
+                <h3 className={styles.productPrice}>{product.price} SEK</h3>
                 <button className={styles.cartBtn}> <FaShoppingCart /> </button>
                 <p>{product.storage} items in stock. </p>
             </motion.div>

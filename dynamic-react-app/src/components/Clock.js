@@ -26,12 +26,8 @@ function Clock() {
     }
 
   return (
-    <div>
-        <p>Clock YEP</p>
-        <p>{ date.toLocaleTimeString() }</p> 
-
-    </div>
-  )
+        <div>{ date.toLocaleTimeString() }</div>
+    )
 }
 
 export default Clock

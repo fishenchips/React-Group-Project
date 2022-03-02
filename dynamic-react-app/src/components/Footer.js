@@ -8,7 +8,7 @@ function Footer() {
         <div>Shopping info</div> 
         <div>Contact us</div>
         <div>Payment Methods</div>
-        <div><Clock /></div>
+        <Clock />
     </div>
   )
 }

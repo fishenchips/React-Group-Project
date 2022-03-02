@@ -9,6 +9,7 @@ import {
 import Footer from './components/Footer';
 import Product from './pages/Product';
 import Checkout from './pages/Checkout';
+import Products from './pages/Products';
 
 
 function App() {
@@ -34,7 +35,7 @@ function App() {
 
 
   //create state here because both checkout.js and cart.js needs this.
-  const [cartItems, setCartItems] = useState(defaultCart)
+  const [cartItems, setCartItems] = useState()
 
   const updateCartItem = (updatedItem) => {
     
@@ -61,9 +62,9 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
+          <Route path="/products" element={ <Products /> }></Route>
           <Route path="/:id" element={ <Product /> } ></Route>
           <Route path="/checkout"  element={ <Checkout cartItems={cartItems} updateCartItem={updateCartItem} deleteCartItem={deleteCartItem} />} ></Route>
-
         </Routes>
 
 

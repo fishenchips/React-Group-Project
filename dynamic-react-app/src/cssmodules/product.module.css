@@ -10,7 +10,7 @@
 
 .imgDiv {
     width: 50%;
-    height: 300px;
+    height: 200px;
     display: flex;
     justify-content: center;
     mix-blend-mode: multiply;
@@ -29,6 +29,10 @@
     margin-top: 10px;
     width: 30%;
     margin-left: 50px;
+}
+
+.productPrice{
+    color: rgba(241, 30, 30, 0.877);
 }
 
 .cartBtn {

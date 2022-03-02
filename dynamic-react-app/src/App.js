@@ -33,10 +33,12 @@ function App() {
   }
   ]
 
-
   //create state here because both checkout.js and cart.js needs this.
+  //for now useState is the dummy data above, but will later be useState([])
   const [cartItems, setCartItems] = useState(defaultCart)
 
+  // function to push products into the cart (useState isnt then empty array as above) 
+  // and sending down to child compontent. Using spread operator to create new array
   const addToCart = (newItem) => {
     setCartItems([
       ...cartItems,
@@ -44,6 +46,7 @@ function App() {
     ])
   }
 
+  //Fuction to update items in the cart - like increasing/dreacreasing quantity. Sending down as props
   const updateCartItem = (updatedItem) => {
     
     //only updated to one product with the correct id.
@@ -53,18 +56,21 @@ function App() {
         : product
     ))
 
+    //Send updatedCart to useState in order to show correct cartList
     setCartItems(updatedCart)
   }
 
+  //fuction to remove an item from the cart
   const deleteCartItem = (id) => {
     let updatedCart = cartItems.filter( (item) => item.id !== id)
         //using test as well and sending it down below. Like todo={todo} is sent down from TodoList -> Todo
     
-    console.log(updatedCart)
 
+    //Send updatedCart to useState in order to show correct cartList
     setCartItems(updatedCart)
   }
 
+  //fuction used when pressing button "clear cart" it empties it , ie useState back to empty Array
   const clearCart = () => {
     setCartItems([])
   }
@@ -74,6 +80,7 @@ function App() {
         <Routes>
           <Route path="/products" element={ <Products /> }></Route>
           <Route path="/:id" element={ <Product /> } ></Route>
+{/*   sending props down to child component. Will be done for shoppingCart as well*/}
           <Route path="/checkout"  element={ <Checkout cartItems={cartItems} updateCartItem={updateCartItem} deleteCartItem={deleteCartItem} clearCart={clearCart} />} ></Route>
         </Routes>
 

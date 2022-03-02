@@ -35,7 +35,14 @@ function App() {
 
 
   //create state here because both checkout.js and cart.js needs this.
-  const [cartItems, setCartItems] = useState()
+  const [cartItems, setCartItems] = useState(defaultCart)
+
+  const addToCart = (newItem) => {
+    setCartItems([
+      ...cartItems,
+      newItem
+    ])
+  }
 
   const updateCartItem = (updatedItem) => {
     
@@ -58,13 +65,16 @@ function App() {
     setCartItems(updatedCart)
   }
 
+  const clearCart = () => {
+    setCartItems([])
+  }
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
           <Route path="/products" element={ <Products /> }></Route>
           <Route path="/:id" element={ <Product /> } ></Route>
-          <Route path="/checkout"  element={ <Checkout cartItems={cartItems} updateCartItem={updateCartItem} deleteCartItem={deleteCartItem} />} ></Route>
+          <Route path="/checkout"  element={ <Checkout cartItems={cartItems} updateCartItem={updateCartItem} deleteCartItem={deleteCartItem} clearCart={clearCart} />} ></Route>
         </Routes>
 
 

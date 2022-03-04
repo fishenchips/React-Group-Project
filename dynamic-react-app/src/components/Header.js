@@ -1,20 +1,24 @@
-import React from 'react'
-import NavBar from './NavBar'
-import styles from "../cssmodules/header.module.css";
+import React from 'react';
 
-
-
-function Header() {
+export default function Header(props) {
   return (
-    <section className='header'>
-        <section className={styles.logo}>
-            <img src='/images/footballicon.png' alt=''></img>
-        </section>
-        <section className='nav-bar'>
-            {<NavBar />}
-        </section>
-    </section>
-  )
+    <header className="block row center">
+      <div>
+        <a href="#/">
+          <h1>Sports Equipment</h1>
+        </a>
+      </div>
+      <div>
+        <a href="#/cart">
+          Cart{' '}
+          {props.countCartItems ? (
+            <button className="badge">{props.countCartItems}</button>
+          ) : (
+            ''
+          )}
+        </a>{' '}
+        <a href="#/signin"> SignIn</a>
+      </div>
+    </header>
+  );
 }
-
-export default Header

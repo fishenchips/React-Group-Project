@@ -7,7 +7,7 @@ import {
   Routes,
   Route
 } from "react-router-dom"
-import Baskettest from './Pages/Baskettest';
+import Home from './components/Home';
 
 
  function App() {
@@ -54,19 +54,21 @@ import Baskettest from './Pages/Baskettest';
   };
   return (
     <div className="App">
-         
+      <BrowserRouter>
+      
+        
       <Header countCartItems={cartItems.length}></Header>
-    
+        <Routes>
+            <Route path='/' element={<Home cartItems={cartItems} products={products} onAdd={onAdd} onRemove={onRemove}/>} />
+             
+            <Route path='/cart' element={<Basket cartItems={cartItems} onAdd={onAdd} onRemove={onRemove}/>} />
+
+        </Routes>
+        </BrowserRouter>
+
 
       
-      <div className="row">
-        <Main products={products} onAdd={onAdd}></Main>
-        <Basket
-          cartItems={cartItems}
-          onAdd={onAdd}
-          onRemove={onRemove}
-        ></Basket>
-      </div>
+      
     </div>
   );
 }

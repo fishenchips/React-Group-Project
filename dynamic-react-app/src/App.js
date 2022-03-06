@@ -2,6 +2,12 @@ import Header from './components/Header';
 import Main from './components/Main';
 import Basket from './components/Basket';
 import React, {useState, useEffect } from 'react'
+import {
+  BrowserRouter,
+  Routes,
+  Route
+} from "react-router-dom"
+import Baskettest from './Pages/Baskettest';
 
 
  function App() {
@@ -48,7 +54,11 @@ import React, {useState, useEffect } from 'react'
   };
   return (
     <div className="App">
+         
       <Header countCartItems={cartItems.length}></Header>
+    
+
+      
       <div className="row">
         <Main products={products} onAdd={onAdd}></Main>
         <Basket

@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import React, {useState} from "react"
 import {
@@ -35,36 +34,42 @@ function App() {
 
   //create state here because both checkout.js and cart.js needs this.
   //for now useState is the dummy data above, but will later be useState([])
-  const [cartItems, setCartItems] = useState(defaultCart)
+  const [cartItems, setCartItems] = useState([])
 
-  // function to push products into the cart (useState isnt then empty array as above) 
-  // and sending down to child compontent. Using spread operator to create new array
-  const addToCart = (newItem) => {
-    setCartItems([
-      ...cartItems,
-      newItem
-    ])
+  //fucntion to add a product to the cart, and if it already exists, add another to its qty (in both cart and checkout)
+  const onAdd = (item) => {
+    const exists = cartItems.find( cartItem => cartItem.id === item.id)
+    if(exists) {
+      exists.qty += 1
+    } else {
+      // if it doesnt exist, add it to carItems array with a new property qty starting at 1.
+      setCartItems([
+        ...cartItems,
+        {qty: 1,
+          ...item} //skapar ett nytt objekt, också spreadar jag item så den lägger till allt tidigare men lägger även till en ny grej: qty
+          //
+        ]
+      )
+    }
+    console.log(cartItems)
   }
 
-  //Fuction to update items in the cart - like increasing/dreacreasing quantity. Sending down as props
-  const updateCartItem = (updatedItem) => {
-    
-    //only updated to one product with the correct id.
-    let updatedCart = cartItems.map( (product) => (
-      product.id === updatedItem.id
-        ? updatedItem
-        : product
-    ))
-
-    //Send updatedCart to useState in order to show correct cartList
-    setCartItems(updatedCart)
+  //function to remove a qty from a product in the cart/checkout
+  const onRemove = (item) => {
+    const exists = cartItems.find( cartItem => cartItem.id === item.id)
+    if(exists.qty === 1) {
+      //dont change anything ie leave qty at 1
+      setCartItems(cartItems)
+    } else {
+      exists.qty -= 1        
+    }
+    console.log(cartItems)
   }
 
-  //fuction to remove an item from the cart
+
+  //fuction to remove an item completely from the cart
   const deleteCartItem = (id) => {
-    let updatedCart = cartItems.filter( (item) => item.id !== id)
-        //using test as well and sending it down below. Like todo={todo} is sent down from TodoList -> Todo
-    
+    let updatedCart = cartItems.filter( (item) => item.id !== id)  
 
     //Send updatedCart to useState in order to show correct cartList
     setCartItems(updatedCart)
@@ -79,9 +84,9 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/products" element={ <Products /> }></Route>
-          <Route path="/:id" element={ <Product /> } ></Route>
+          <Route path="/products/:id" element={ <Product onAdd={onAdd} /> } ></Route>
 {/*   sending props down to child component. Will be done for shoppingCart as well*/}
-          <Route path="/checkout"  element={ <Checkout cartItems={cartItems} updateCartItem={updateCartItem} deleteCartItem={deleteCartItem} clearCart={clearCart} />} ></Route>
+          <Route path="/checkout"  element={ <Checkout cartItems={cartItems} onAdd={onAdd} onRemove={onRemove} deleteCartItem={deleteCartItem} clearCart={clearCart} />} ></Route>
         </Routes>
 
 

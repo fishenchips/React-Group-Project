@@ -6,7 +6,10 @@ import {motion} from "framer-motion";
 import { button, checkout } from '../animations'
 import {Table, TableHeader, TableRow, Img, DeleteBtn, ClearBtn, AlterQtyBtn} from "../styledComponents"
 
-function Checkout({cartItems, updateCartItem, deleteCartItem, clearCart}) {
+function Checkout({cartItems, onAdd, onRemove, deleteCartItem, clearCart}) {
+
+         
+    console.log("cartItems", cartItems)
 
     if (cartItems.length == 0) {
         return < EmptyCheckout /> 
@@ -40,14 +43,15 @@ function Checkout({cartItems, updateCartItem, deleteCartItem, clearCart}) {
                                         <td>{product.title}</td>
                                         <td>{product.price} SEK</td>
                                         <td>
-                                            <AlterQtyBtn>+</AlterQtyBtn> 
-                                            <AlterQtyBtn>-</AlterQtyBtn>
+                                            <AlterQtyBtn onClick={ ()=> onAdd(product) }> + </AlterQtyBtn> 
+                                            <AlterQtyBtn onClick={ ()=> onRemove(product) }> - </AlterQtyBtn>
                                         </td>
-                                        <td>amount</td>
+                                        {console.log("from checkoutt", product.qty)}
+                                        <td>{product.qty} </td>
                                         <td>Sum: </td>
                                         <td>
                                             <DeleteBtn 
-                                                onClick={()=> deleteCartItem(product.id)}
+                                                onClick={()=> deleteCartItem(product.id) }
                                                 whileHover="hover"
                                                 whileTap="press"
                                                 variants={button}

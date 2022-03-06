@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import styles from "../cssmodules/product.module.css"
 import {motion} from "framer-motion";
 import {headerSlide, imgSlide, asideSlide, infoSlide, pChild, button} from "../animations"
 
-function Product() {
+
+//?id=234967
+
+function Product( { onAdd } ) {
     const params = useParams();
     const [product, setProduct] = useState({}) //start with empty object
 
     const fetchData = async() => {
         try {
-            const response = await fetch("https://codexplained.se/sportstuff.php?id=234967") //hardcoded for now
+            const response = await fetch("https://codexplained.se/sportstuff.php?id=" + params.id) //hardcoded for now
             const data = await response.json()
 
             console.log("does this work", data)
@@ -24,6 +27,7 @@ function Product() {
         fetchData();
     }, []) //empty array meaning useEffect() only runs at componentDidMount
 
+    console.log("product", product)
   return (
     <article className={styles.productPage}>
         <motion.h2  
@@ -34,6 +38,8 @@ function Product() {
         >
             {product.title}
         </motion.h2>
+        <Link to="/checkout">hello</Link>
+        {params.id}
         <div className={styles.productWrapper}>
             <motion.div 
                 className={styles.imgDiv}
@@ -54,7 +60,8 @@ function Product() {
                     className={styles.cartBtn}
                     whileHover="hover"
                     whileTap="press"
-                    variants={button}               
+                    variants={button}
+                    onClick={ ()=> onAdd(product)}          
                 >
                     Add to cart
                 </motion.button>

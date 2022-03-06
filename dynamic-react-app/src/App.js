@@ -5,9 +5,9 @@ import {
   Route
 } from "react-router-dom"
 import Footer from './components/Footer';
-import Product from './Pages/Product';
 import Header from './components/Header';
 import Products from './Pages/Products';
+import Basket from './components/Basket';
 
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
     
         <Routes>
             <Route path='/products' element={<Products />} />
-            <Route path="/product" element={ <Product /> } />
+            <Route path='/products' element={<Basket/>} />
 
         </Routes>
         </BrowserRouter>

@@ -12,6 +12,7 @@ function Header() {
         </section>
         <section className='nav-bar'>
             {<NavBar />}
+            
         </section>
     </section>
   )

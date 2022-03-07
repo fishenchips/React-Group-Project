@@ -6,17 +6,26 @@ import {motion} from "framer-motion";
 import { button, checkout } from '../animations'
 import {Table, TableHeader, TableRow, Img, DeleteBtn, ClearBtn, AlterQtyBtn} from "../styledComponents"
 
-function Checkout({cartItems, onAdd, onRemove, deleteCartItem, clearCart}) {
+function Checkout({ cartItems, setCartItems, onRemove, deleteCartItem, clearCart }) {
 
          
     console.log("cartItems", cartItems)
 
     let checkoutSum = 0;
 
-    console.log(checkoutSum, "summan")
-
+    //function to add only one when pressing + and then updating cartItems array
+    const addOne = (item) => {
+        const exists = cartItems.find( cartItem => cartItem.id === item.id)
+        if(exists) {
+            exists.qty += 1
+            setCartItems([
+              ...cartItems
+            ])
+        }
+    }
+    
     if (cartItems.length == 0) {
-        return < EmptyCheckout /> 
+        return <EmptyCheckout /> 
     }
     else {
         return (
@@ -37,7 +46,8 @@ function Checkout({cartItems, onAdd, onRemove, deleteCartItem, clearCart}) {
                                 <th>Image</th>
                                 <th>Product</th>
                                 <th>Price</th>
-                                <th>Increase/Decrease</th>
+                                <th>Add/Decrease</th>
+                                <th>Quantity</th>
                                 <th>Sum</th>
                                 <th>Remove</th>
                             </TableRow>
@@ -55,7 +65,7 @@ function Checkout({cartItems, onAdd, onRemove, deleteCartItem, clearCart}) {
                                         <td>{product.title}</td>
                                         <td>${product.price}</td>
                                         <td>
-                                            <AlterQtyBtn onClick={ ()=> onAdd(product) }> + </AlterQtyBtn> 
+                                            <AlterQtyBtn onClick={ ()=> addOne(product) }> + </AlterQtyBtn> 
                                             <AlterQtyBtn onClick={ ()=> onRemove(product) }> - </AlterQtyBtn>
                                         </td>
                                         {console.log("from checkoutt", product.qty)}
@@ -86,10 +96,10 @@ function Checkout({cartItems, onAdd, onRemove, deleteCartItem, clearCart}) {
                         whileTap="press"
                         variants={button}
                     >
-                        Clear shopping cartt
+                        Clear shopping cart
                     </ClearBtn>
                     <h3>
-                        Total cost: 
+                        Total cost: $ 
                         {cartItems.map( (product) => (
                             checkoutSum += parseFloat((product.qty) * (product.price))
                         ))}
@@ -100,4 +110,5 @@ function Checkout({cartItems, onAdd, onRemove, deleteCartItem, clearCart}) {
         )
     }
 }
+
 export default Checkout

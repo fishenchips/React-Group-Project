@@ -2,7 +2,6 @@ import styled from "styled-components";
 import {motion} from "framer-motion";
 
 export const Table = styled.table`
-    border: 1px solid tomato;
     display: flex;
     flex-direction: column;
 `
@@ -27,7 +26,6 @@ export const Img = styled.img`
 export const Form = styled.form`
     display: flex;
     flex-direction: column;
-    border: 1px solid blue;
     padding: 1rem;
     align-items: center;   
 `
@@ -52,7 +50,6 @@ export const AlterQtyBtn = styled(DeleteBtn)`
     border-radius: 0.25rem;
     width: 1.5rem;
 `
-
 
 export const ClearBtn = styled(DeleteBtn)`
     padding: 1rem;

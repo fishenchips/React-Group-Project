@@ -35,27 +35,36 @@ function App() {
   //create state here because both checkout.js and cart.js needs this.
   //for now useState is the dummy data above, but will later be useState([])
   const [cartItems, setCartItems] = useState([])
+  const [number, setNumber] = useState(1) // Hook to change input value
 
-  //fucntion to add a product to the cart, and if it already exists, add another to its qty (in both cart and checkout)
+  //function to add a product to the cart, and if it already exists, add more to its qty (in both cart and checkout)
   const onAdd = (item) => {
     const exists = cartItems.find( cartItem => cartItem.id === item.id)
     if(exists) {
-      exists.qty += 1
-      // need to update its state to show the new value for qty as well
-      setCartItems([
-        ...cartItems
-      ])
+        //cant add a value of 0
+        if (number === 0) {
+          alert("Please add a product")
+        } else {
+        exists.qty += parseInt(number)
+        // need to update its state to show the new value for qty as well
+        setCartItems([
+          ...cartItems
+        ])
+      }
     } else {
-      // if it doesnt exist, add it to carItems array with a new property qty starting at 1.
-      setCartItems([
-        ...cartItems,
-        {qty: 1,
-          ...item} //skapar ett nytt objekt, också spreadar jag item så den lägger till allt tidigare men lägger även till en ny grej: qty
-          //
-        ]
-      )
+      // if it doesnt exist, add it to carItems array with a new property qty (only if inputvalue > 0).
+      if (number === 0) {
+        alert("Please add a product")
+      } else {
+        setCartItems([
+          ...cartItems,
+          {qty: parseInt(number),
+            ...item} //Since we are creating a new object, add all previous properties of item, plus qty.
+          ]
+        )
+      }
     }
-    console.log(cartItems)
+    console.log("cart item", cartItems)
   }
 
   //function to remove a qty from a product in the cart/checkout
@@ -66,7 +75,7 @@ function App() {
       setCartItems(cartItems)
     } else {
       exists.qty -= 1
-      // same as onAdd, need to update state
+      // same as onAdd, need to update state otherwise the change wont show
       setCartItems([
         ...cartItems
       ])        
@@ -74,10 +83,9 @@ function App() {
     console.log(cartItems)
   }
 
-
   //fuction to remove an item completely from the cart
   const deleteCartItem = (id) => {
-    let updatedCart = cartItems.filter( (item) => item.id !== id)  
+    let updatedCart = cartItems.filter( (item) => item.id !== id )  
 
     //Send updatedCart to useState in order to show correct cartList
     setCartItems(updatedCart)
@@ -90,11 +98,12 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
+
+      
         <Routes>
           <Route path="/products" element={ <Products /> }></Route>
-          <Route path="/products/:id" element={ <Product onAdd={onAdd} /> } ></Route>
-{/*   sending props down to child component. Will be done for shoppingCart as well*/}
-          <Route path="/checkout"  element={ <Checkout cartItems={cartItems} onAdd={onAdd} onRemove={onRemove} deleteCartItem={deleteCartItem} clearCart={clearCart} />} ></Route>
+          <Route path="/products/:id" element={ <Product onAdd={onAdd} number={number} setNumber={setNumber} /> } ></Route>
+          <Route path="/checkout"  element={ <Checkout cartItems={cartItems} setCartItems={setCartItems} onAdd={onAdd} onRemove={onRemove} deleteCartItem={deleteCartItem} clearCart={clearCart} number={number} setNumber={setNumber} />} ></Route>
         </Routes>
 
 

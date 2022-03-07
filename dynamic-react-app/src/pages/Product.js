@@ -4,16 +4,13 @@ import styles from "../cssmodules/product.module.css"
 import {motion} from "framer-motion";
 import {headerSlide, imgSlide, asideSlide, infoSlide, pChild, button} from "../animations"
 
-
-//?id=234967
-
-function Product( { onAdd } ) {
+function Product( { onAdd, number, setNumber } ) {
     const params = useParams();
     const [product, setProduct] = useState({}) //start with empty object
-
+ 
     const fetchData = async() => {
         try {
-            const response = await fetch("https://codexplained.se/sportstuff.php?id=" + params.id) //hardcoded for now
+            const response = await fetch("https://codexplained.se/sportstuff.php?id=" + params.id)
             const data = await response.json()
 
             console.log("does this work", data)
@@ -27,7 +24,10 @@ function Product( { onAdd } ) {
         fetchData();
     }, []) //empty array meaning useEffect() only runs at componentDidMount
 
-    console.log("product", product)
+    const handleInputChange = (e) => {
+        setNumber(parseInt(e.target.value))           
+    }
+
   return (
     <article className={styles.productPage}>
         <motion.h2  
@@ -38,7 +38,7 @@ function Product( { onAdd } ) {
         >
             {product.title}
         </motion.h2>
-        <Link to="/checkout">hello</Link>
+        <Link to="/checkout">hello</Link> {/* REMOVE THIS LATER */}
         {params.id}
         <div className={styles.productWrapper}>
             <motion.div 
@@ -55,13 +55,23 @@ function Product( { onAdd } ) {
                 animate="end"
                 variants={asideSlide}
             >
-                <h3 className={styles.productPrice}>{product.price} SEK</h3>
+                <h3 className={styles.productPrice}>${product.price}</h3>
+                <input 
+                    type="number"
+                    value={number}
+                    min="1"
+                    onChange={handleInputChange}
+                />
+{/*                 try to set initial value of input to 1
+
+                    Also, if there is value of qty prior, new added qty should be added to that value
+ */}
                 <motion.button    
                     className={styles.cartBtn}
                     whileHover="hover"
                     whileTap="press"
                     variants={button}
-                    onClick={ ()=> onAdd(product)}          
+                    onClick={ () => ( onAdd (product) ) }          
                 >
                     Add to cart
                 </motion.button>

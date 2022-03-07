@@ -38,7 +38,7 @@ function App() {
   const [number, setNumber] = useState(1) // Hook to change input value
 
   //function to add a product to the cart, and if it already exists, add more to its qty (in both cart and checkout)
-  const onAdd = (item) => {
+  const onAddPH = (item) => {
     const exists = cartItems.find( cartItem => cartItem.id === item.id)
     if(exists) {
         //cant add a value of 0
@@ -68,7 +68,7 @@ function App() {
   }
 
   //function to remove a qty from a product in the cart/checkout
-  const onRemove = (item) => {
+  const onRemovePH = (item) => {
     const exists = cartItems.find( cartItem => cartItem.id === item.id)
     if(exists.qty === 1) {
       //dont change anything ie leave qty at 1
@@ -99,11 +99,11 @@ function App() {
     <div className="App">
       <BrowserRouter>
 
-      
+
         <Routes>
           <Route path="/products" element={ <Products /> }></Route>
-          <Route path="/products/:id" element={ <Product onAdd={onAdd} number={number} setNumber={setNumber} /> } ></Route>
-          <Route path="/checkout"  element={ <Checkout cartItems={cartItems} setCartItems={setCartItems} onAdd={onAdd} onRemove={onRemove} deleteCartItem={deleteCartItem} clearCart={clearCart} number={number} setNumber={setNumber} />} ></Route>
+          <Route path="/products/:id" element={ <Product onAddPH={onAddPH} number={number} setNumber={setNumber} /> } ></Route>
+          <Route path="/checkout"  element={ <Checkout cartItems={cartItems} setCartItems={setCartItems} onAddPH={onAddPH} onRemovePH={onRemovePH} deleteCartItem={deleteCartItem} clearCart={clearCart} number={number} setNumber={setNumber} />} ></Route>
         </Routes>
 
 

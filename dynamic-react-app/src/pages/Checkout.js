@@ -6,7 +6,7 @@ import {motion} from "framer-motion";
 import { button, checkout } from '../animations'
 import {Table, TableHeader, TableRow, Img, DeleteBtn, ClearBtn, AlterQtyBtn} from "../styledComponents"
 
-function Checkout({ cartItems, setCartItems, onRemove, deleteCartItem, clearCart }) {
+function Checkout({ cartItems, setCartItems, onRemovePH, deleteCartItem, clearCart }) {
 
          
     console.log("cartItems", cartItems)
@@ -66,7 +66,7 @@ function Checkout({ cartItems, setCartItems, onRemove, deleteCartItem, clearCart
                                         <td>${product.price}</td>
                                         <td>
                                             <AlterQtyBtn onClick={ ()=> addOne(product) }> + </AlterQtyBtn> 
-                                            <AlterQtyBtn onClick={ ()=> onRemove(product) }> - </AlterQtyBtn>
+                                            <AlterQtyBtn onClick={ ()=> onRemovePH(product) }> - </AlterQtyBtn>
                                         </td>
                                         {console.log("from checkoutt", product.qty)}
                                         <td>

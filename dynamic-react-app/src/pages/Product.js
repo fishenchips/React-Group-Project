@@ -4,7 +4,7 @@ import styles from "../cssmodules/product.module.css"
 import {motion} from "framer-motion";
 import {headerSlide, imgSlide, asideSlide, infoSlide, pChild, button} from "../animations"
 
-function Product( { onAdd, number, setNumber } ) {
+function Product( { onAddPH, number, setNumber } ) {
     const params = useParams();
     const [product, setProduct] = useState({}) //start with empty object
  
@@ -71,7 +71,7 @@ function Product( { onAdd, number, setNumber } ) {
                     whileHover="hover"
                     whileTap="press"
                     variants={button}
-                    onClick={ () => ( onAdd (product) ) }          
+                    onClick={ () => ( onAddPH (product) ) }          
                 >
                     Add to cart
                 </motion.button>

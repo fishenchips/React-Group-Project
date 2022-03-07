@@ -11,6 +11,10 @@ function Checkout({cartItems, onAdd, onRemove, deleteCartItem, clearCart}) {
          
     console.log("cartItems", cartItems)
 
+    let checkoutSum = 0;
+
+    console.log(checkoutSum, "summan")
+
     if (cartItems.length == 0) {
         return < EmptyCheckout /> 
     }
@@ -29,6 +33,14 @@ function Checkout({cartItems, onAdd, onRemove, deleteCartItem, clearCart}) {
                                     <TableHeader>Checkout</TableHeader>
                                 </td>
                             </tr>
+                            <TableRow>
+                                <th>Image</th>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Increase/Decrease</th>
+                                <th>Sum</th>
+                                <th>Remove</th>
+                            </TableRow>
                         </thead>
                         <tbody>
                             {
@@ -41,14 +53,18 @@ function Checkout({cartItems, onAdd, onRemove, deleteCartItem, clearCart}) {
                                             />
                                         </td>
                                         <td>{product.title}</td>
-                                        <td>{product.price} SEK</td>
+                                        <td>${product.price}</td>
                                         <td>
                                             <AlterQtyBtn onClick={ ()=> onAdd(product) }> + </AlterQtyBtn> 
                                             <AlterQtyBtn onClick={ ()=> onRemove(product) }> - </AlterQtyBtn>
                                         </td>
                                         {console.log("from checkoutt", product.qty)}
-                                        <td>{product.qty} </td>
-                                        <td>Sum: </td>
+                                        <td>
+                                            {product.qty} 
+                                        </td>
+                                        <td>
+                                            ${(product.qty) * (product.price)}
+                                        </td>
                                         <td>
                                             <DeleteBtn 
                                                 onClick={()=> deleteCartItem(product.id) }
@@ -70,9 +86,14 @@ function Checkout({cartItems, onAdd, onRemove, deleteCartItem, clearCart}) {
                         whileTap="press"
                         variants={button}
                     >
-                        Clear shopping cart
+                        Clear shopping cartt
                     </ClearBtn>
-                    <h3>Total cost:</h3>
+                    <h3>
+                        Total cost: 
+                        {cartItems.map( (product) => (
+                            checkoutSum += parseFloat((product.qty) * (product.price))
+                        ))}
+                    </h3>
                 </section>
                 <CheckoutForm />
             </motion.div>

@@ -41,6 +41,10 @@ function App() {
     const exists = cartItems.find( cartItem => cartItem.id === item.id)
     if(exists) {
       exists.qty += 1
+      // need to update its state to show the new value for qty as well
+      setCartItems([
+        ...cartItems
+      ])
     } else {
       // if it doesnt exist, add it to carItems array with a new property qty starting at 1.
       setCartItems([
@@ -61,7 +65,11 @@ function App() {
       //dont change anything ie leave qty at 1
       setCartItems(cartItems)
     } else {
-      exists.qty -= 1        
+      exists.qty -= 1
+      // same as onAdd, need to update state
+      setCartItems([
+        ...cartItems
+      ])        
     }
     console.log(cartItems)
   }

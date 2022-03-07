@@ -5,7 +5,7 @@ function EmptyCheckout() {
   return (
     <div>
         <h1>Checkout</h1>
-        <p>Your shopping cart is empty, please go back to our <Link to="/products">products</Link> page.</p>
+        <p>Your shopping cart is empty, please go back to our <Link to="/">products</Link> page.</p>
     </div>
   )
 }

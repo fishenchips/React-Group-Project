@@ -1,5 +1,8 @@
-import './App.css';
-import React, {useState} from "react"
+import Header from './components/Header';
+import Home from './components/Home';
+import Main from './components/Main';
+import Basket from './components/Basket';
+import React, {useState, useEffect } from 'react'
 import {
   BrowserRouter,
   Routes,
@@ -12,30 +15,53 @@ import Products from './pages/Products';
 
 
 function App() {
-
-  //Dummy data
-  const defaultCart = [{
-    id: 234967,
-    title: "Tennis racket",
-    description: "Quo neque error repudiandae fuga? Ipsa laudantium molestias eos \n        sapiente officiis modi at sunt excepturi expedita sint? Sed quibusdam\n        recusandae alias error harum maxime adipisci amet laborum.",
-    price: 5500,
-    storage: 77,
-    url: "https://cdn.pixabay.com/photo/2020/04/10/10/44/activity-5025174_1280.jpg"
-  },
-  {
-    id: 5456463,
-    title: "Rollerblades",
-    description: "Quo neque error repudiandae fuga? Ipsa laudantium molestias eos \n        sapiente officiis modi at sunt excepturi expedita sint? Sed quibusdam\n        recusandae alias error harum maxime adipisci amet laborum.",
-    price: 3500,
-    storage: 24,
-    url: "https://cdn.pixabay.com/photo/2016/12/17/09/01/sport-1913035_1280.png"
-  }
-  ]
-
+  
+  const [products,setProducts] = useState([]);
   //create state here because both checkout.js and cart.js needs this.
   //for now useState is the dummy data above, but will later be useState([])
   const [cartItems, setCartItems] = useState([])
   const [number, setNumber] = useState(1) // Hook to change input value
+
+  const fetchData = async()=> {
+    try{ 
+     const response = await fetch('https://codexplained.se/sportstuff.php');
+     const data = await response.json();
+     console.log("data", data);
+     setProducts(data);
+    } catch(error) {
+     console.log(error); 
+    }
+  }
+
+  useEffect(()=>{
+    fetchData();
+  }, [])
+
+  const onAdd = (product) => {
+    const exist = cartItems.find((x) => x.id === product.id);
+    if (exist) {
+      setCartItems(
+        cartItems.map((x) =>
+          x.id === product.id ? { ...exist, qty: exist.qty + 1 } : x
+        )
+      );
+    } else {
+      setCartItems([...cartItems, { ...product, qty: 1 }]);
+    }
+  };
+
+  const onRemove = (product) => {
+    const exist = cartItems.find((x) => x.id === product.id);
+    if (exist.qty === 1) {
+      setCartItems(cartItems.filter((x) => x.id !== product.id));
+    } else {
+      setCartItems(
+        cartItems.map((x) =>
+          x.id === product.id ? { ...exist, qty: exist.qty - 1 } : x
+        )
+      );
+    }
+  }
 
   //function to add a product to the cart, and if it already exists, add more to its qty (in both cart and checkout)
   const onAddPH = (item) => {
@@ -99,18 +125,21 @@ function App() {
     <div className="App">
       <BrowserRouter>
 
+        <Header countCartItems={cartItems.length}></Header>
 
         <Routes>
+          <Route path='/' element={<Home cartItems={cartItems} products={products} onAdd={onAdd} onRemove={onRemove}/>} />
+          <Route path='/cart' element={<Basket cartItems={cartItems} onAdd={onAdd} onRemove={onRemove}/>} />
           <Route path="/products" element={ <Products /> }></Route>
           <Route path="/products/:id" element={ <Product onAddPH={onAddPH} number={number} setNumber={setNumber} /> } ></Route>
           <Route path="/checkout"  element={ <Checkout cartItems={cartItems} setCartItems={setCartItems} onAddPH={onAddPH} onRemovePH={onRemovePH} deleteCartItem={deleteCartItem} clearCart={clearCart} number={number} setNumber={setNumber} />} ></Route>
         </Routes>
 
-
         <Footer />
+
       </BrowserRouter>
     </div>
-  );
+  )
 }
 
 export default App;

@@ -4,7 +4,7 @@ import CheckoutForm from '../components/CheckoutForm';
 import EmptyCheckout from '../components/EmptyCheckout';
 import {motion} from "framer-motion";
 import { button, checkout } from '../animations'
-import {Table, TableHeader, TableRow, Img, DeleteBtn, ClearBtn, AlterQtyBtn} from "../styledComponents"
+import {Table, TableHeader, TableRow, Img, DeleteBtn, ClearBtn, AlterQtyBtn, TotalPrice} from "../styledComponents"
 
 function Checkout({ cartItems, setCartItems, onRemovePH, deleteCartItem, clearCart }) {
     
@@ -99,10 +99,10 @@ function Checkout({ cartItems, setCartItems, onRemovePH, deleteCartItem, clearCa
                     >
                         Clear shopping cart
                     </ClearBtn>
-                    <h3>
+                    <TotalPrice>
                         Total cost: $ 
                         {checkoutSum}
-                    </h3>
+                    </TotalPrice>
                 </section>
                 <CheckoutForm />
             </motion.div>

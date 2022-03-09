@@ -54,16 +54,12 @@ function Product( { onAddPH, number, setNumber } ) {
                 variants={asideSlide}
             >
                 <h3 className={styles.productPrice}>${product.price}</h3>
-                <input 
+                <input
                     type="number"
                     value={number}
                     min="1"
                     onChange={handleInputChange}
                 />
-{/*                 try to set initial value of input to 1
-
-                    Also, if there is value of qty prior, new added qty should be added to that value
- */}
                 <motion.button    
                     className={styles.cartBtn}
                     whileHover="hover"
@@ -77,6 +73,7 @@ function Product( { onAddPH, number, setNumber } ) {
             </motion.div>
         </div>
         <motion.div
+            className={styles.bottomText}
             initial="start"
             animate="end"
             variants={infoSlide}

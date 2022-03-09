@@ -7,7 +7,8 @@ export const Table = styled.table`
 `
 
 export const TableHeader = styled.h2`
-    align-self: center;
+    text-align: center;
+    width: 100vw;
 `
 
 export const TableRow = styled.tr`
@@ -38,7 +39,9 @@ export const InputForm = styled(motion.input)`
 `
 
 export const DeleteBtn = styled(motion.button)`
+    width: 100%;
     padding: 0.5rem;
+    text-align: center
     border-radius: 0.8rem;
     border-color: olivedrab;
     background-color: rgb(107, 143, 36);
@@ -53,9 +56,16 @@ export const AlterQtyBtn = styled(DeleteBtn)`
 
 export const ClearBtn = styled(DeleteBtn)`
     padding: 1rem;
+    width: 90%;
+    margin-left: 5%;
 `
 
 export const BuyBtn = styled(DeleteBtn)`
     padding: 2rem;
     background-color: green;
+`
+
+export const TotalPrice = styled.h3`
+    text-align: center;
+    width: 100vw;
 `

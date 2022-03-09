@@ -1,11 +1,11 @@
 export const headerSlide = {
     start: {
-        y: "-10vh",
+        y: "-60vh",
         scale: 0.1
     },
     end: {
         y: 0,
-        scale: 1.7,
+        scale: 1.2,
         transition : {duration: 2}
     }  
 }

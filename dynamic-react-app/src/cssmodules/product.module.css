@@ -2,6 +2,11 @@
     background-color: whitesmoke;
 }
 
+.productTitle {
+    text-align: center;
+    margin: 0 auto;
+}
+
 .productWrapper {
     display: flex;
     margin-top: 40px;
@@ -25,6 +30,7 @@
 .productAside {
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: space-evenly;
     margin-top: 10px;
     width: 30%;
@@ -43,4 +49,9 @@
     border-color: olivedrab;
     background-color: rgb(107, 143, 36);
     color: rgb(245, 245, 245);
+}
+
+.bottomText {
+    text-align: center;
+    font-size: small;
 }

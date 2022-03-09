@@ -10,9 +10,9 @@ function NavBar() {
 
       <ul >    
          
-         <Link to="/">Home</Link>
-         <Link to="/products"> Products </Link>
+         <Link to="/">Home</Link>         
          <Link to="/cart"> Cart </Link>
+         <Link to="/checkout"> Checkout </Link>
          
         
       </ul>

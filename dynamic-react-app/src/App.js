@@ -9,9 +9,9 @@ import {
   Route
 } from "react-router-dom"
 import Footer from './components/Footer';
-import Product from './pages/Product';
-import Checkout from './pages/Checkout';
-import Products from './pages/Products';
+import Product from './Pages/Product';
+import Checkout from './Pages/Checkout';
+import Products from './Pages/Products';
 
 
 function App() {

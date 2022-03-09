@@ -7,9 +7,10 @@ export default function Header(props) {
   return (
     <header className="block row center">
       <div>
-        <a href="#/">
+        
           <h1 className='header1'>Sports Equipment</h1>
-        </a>
+          <img src='/images/footballicon.png' width="100px" height="100px" alt=''></img>
+        
 
 
       </div>

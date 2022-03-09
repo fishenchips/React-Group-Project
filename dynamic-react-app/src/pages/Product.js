@@ -38,8 +38,6 @@ function Product( { onAddPH, number, setNumber } ) {
         >
             {product.title}
         </motion.h2>
-        <Link to="/checkout">hello</Link> {/* REMOVE THIS LATER */}
-        {params.id}
         <div className={styles.productWrapper}>
             <motion.div 
                 className={styles.imgDiv}

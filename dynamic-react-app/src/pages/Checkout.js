@@ -7,11 +7,12 @@ import { button, checkout } from '../animations'
 import {Table, TableHeader, TableRow, Img, DeleteBtn, ClearBtn, AlterQtyBtn} from "../styledComponents"
 
 function Checkout({ cartItems, setCartItems, onRemovePH, deleteCartItem, clearCart }) {
-
-         
-    console.log("cartItems", cartItems)
-
+    
     let checkoutSum = 0;
+         
+    cartItems.map( (product) => (
+        checkoutSum += parseInt(product.qty) * parseInt(product.price)
+    ))   
 
     //function to add only one when pressing + and then updating cartItems array
     const addOne = (item) => {
@@ -68,7 +69,7 @@ function Checkout({ cartItems, setCartItems, onRemovePH, deleteCartItem, clearCa
                                             <AlterQtyBtn onClick={ ()=> addOne(product) }> + </AlterQtyBtn> 
                                             <AlterQtyBtn onClick={ ()=> onRemovePH(product) }> - </AlterQtyBtn>
                                         </td>
-                                        {console.log("from checkoutt", product.qty)}
+                                        {console.log("quantity", product.qty)}
                                         <td>
                                             {product.qty} 
                                         </td>
@@ -100,9 +101,7 @@ function Checkout({ cartItems, setCartItems, onRemovePH, deleteCartItem, clearCa
                     </ClearBtn>
                     <h3>
                         Total cost: $ 
-                        {cartItems.map( (product) => (
-                            checkoutSum += parseFloat((product.qty) * (product.price))
-                        ))}
+                        {checkoutSum}
                     </h3>
                 </section>
                 <CheckoutForm />
